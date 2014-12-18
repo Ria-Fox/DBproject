@@ -36,8 +36,20 @@
 			</form>
 		 </td>
 	</tr>
+	<?php
+	   include("db.php");
+	   $conn = connect();
+	   echo("<tr>");
+		  echo("<table border=0>");
+	   $query = "select 'name', 'rate_total', 'rate_user' from Hotel order by desc limit 10";
+	   $row = mysql_query($query,$conn);
+	   echo("<tr><td>Hotel name</td><td>Ratings</td></tr>");
+	   while($rst = mysql_fetch_array($row)){
+		  echo("<tr>");
+			 echo("<td>".$rst[0]."</td>");
+			 echo
 
-<?php
+<!--<?php
 include("db.php");
 $conn = connect();
 $query = "SELECT `index`, `dept`, `no`, `name` FROM `members`";
@@ -50,7 +62,7 @@ while($rst = mysql_fetch_array($row)){
 		echo("<td>".$rst[3]."</td>");
 	echo("</tr>");
 }
-?>
+?>-->
 
 </table>
 </center>
