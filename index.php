@@ -10,15 +10,31 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/respond.js"></script>
 
-<table class="table">
+	<center><t3><b>PosHotel</b></t3></center>
+	<center>
+<table class="table" border="0">
 	<tr>
-		<th>Team14</th>
-	</tr>
-	<tr>
-		<th>#</th>
-		<th>Dept</th>
-		<th>Student No.</th>
-		<th>Name</th>
+		<td>
+			<form action="login.php" method="post">
+				ID : <input type="text" name="user_id"><br>
+				PASS : <input type="text" name="user_pass"><input type="submit"><br>
+				Hotel Owner : <input type="checkbox" name="isowner">
+			</form>
+		</td>
+		<td>
+		   <form action="search.php" method="get">
+			  Location : <input type="text" name="location"> 
+			  price : 
+			  <select id="" name='price'>
+				 <option value=0 selected="selected">10,000~49,000</option>
+				 <option value=1>50,000~99,000</option>
+				 <option value=2>100,000~199,000</option>
+				 <option value=3>200,000~</option>
+			  </select>
+			  breakfast : <input type="checkbox" name="breakfast">
+			  <input type="submit">
+			</form>
+		 </td>
 	</tr>
 
 <?php
@@ -37,6 +53,6 @@ while($rst = mysql_fetch_array($row)){
 ?>
 
 </table>
-
+</center>
 </body>
 </html>
