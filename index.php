@@ -39,7 +39,7 @@
 	<?php
 	   include("db.php");
 	   $conn = connect();
-	   echo("<tr>");
+	   echo("<tr><td>");
 		  echo("<table border=0>");
 	   $query = "select 'name', 'rate_total', 'rate_user' from Hotel order by desc limit 10";
 	   $row = mysql_query($query,$conn);
@@ -47,7 +47,14 @@
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");
-			 echo
+			 echo("<td>".($rst[1]/$rst[2])."</td>");
+		  echo("</tr>");
+	}
+	echo("</td></table>");
+	?>
+
+
+
 
 <!--<?php
 include("db.php");
