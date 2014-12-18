@@ -41,7 +41,7 @@
 	   $conn = connect();
 	   echo("<tr><td>");
 		  echo("<table border=0>");
-	   $query = "select 'name', 'rate_total', 'rate_user' from Hotel order by desc limit 10";
+	   $query = "select `name`, `rate_total`, `rate_user` from `hotel` order by (rate_total/rate_user) desc LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><td>Hotel name</td><td>Ratings</td></tr>");
 	   while($rst = mysql_fetch_array($row)){
@@ -50,7 +50,7 @@
 			 echo("<td>".($rst[1]/$rst[2])."</td>");
 		  echo("</tr>");
 	}
-	echo("</td></table>");
+	echo("</td></tr></table>");
 	?>
 
 
