@@ -28,7 +28,7 @@
 	<tr>
 		<td width="33%">
 			<form action="login.php" method="post">
-		<div class="panel panel-default">
+		<div class="panel panel-info">
 			<div class="panel-heading">Login</div>
 			<div class="panel-body">
 				<div class="input-group" style="width:100%">
@@ -51,7 +51,7 @@
 		</td>
 		<td colspan="2">
 		   <form action="search.php" method="post">
-		   <div class="panel panel-default">
+		   <div class="panel panel-primary">
 			<div class="panel-heading">Search for Hotels</div>
 			<div class="panel-body">
 				<table style="width:100%">
@@ -89,7 +89,7 @@
 	</tr>
 
 	<tr><td>
-	<div class="panel panel-default">
+	<div class="panel panel-success">
     <div class="panel-heading">Recommanded Hotel based on Rating</div>
 	<table class="table">
 	<?php
@@ -104,7 +104,7 @@
 	}
 	?>
 	</table></div></td><td>
-	<div class="panel panel-default">
+	<div class="panel panel-success">
     <div class="panel-heading">Recommanded Hotel based on Price</div>
 	<table class="table">
 	<?php
@@ -120,7 +120,7 @@
 	}
 	?>
 	</table></div></td><td>
-	<div class="panel panel-default">
+	<div class="panel panel-success">
     <div class="panel-heading">Recommanded Hotel based on Options</div>
 	<table class="table">
 	<?php

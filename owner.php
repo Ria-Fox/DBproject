@@ -30,7 +30,7 @@
 <table class="table">
 	<tr>
 		<td width="50%">
-			<div class="panel panel-default">
+			<div class="panel panel-info">
 			<div class="panel-heading">Hotel owner</div>
 			<div class="panel-body">
 				환영합니다, <?=$id?> 님.
@@ -38,7 +38,7 @@
 		</td>
 		<td width="50%">
 		   <form method="post">
-		   	<div class="panel panel-default">
+		   	<div class="panel panel-primary">
 		   	<div class="panel-heading">Search for my hotel</div>
 			<div class="panel-body">
       		<select id="" name="hid" style="width:100%">
@@ -62,7 +62,7 @@
 	</tr>
 
 	<tr><td>
-	<div class="panel panel-default">
+	<div class="panel panel-success">
     <div class="panel-heading">My Hotel List</div>
 	<table class="table">
 	<?php
@@ -78,7 +78,7 @@
 		}
 	?>
 	</table></div></td><td>
-	<div class="panel panel-default">
+	<div class="panel panel-success">
     <div class="panel-heading">My Rooms in Hotels</div>
 	<table class="table">
 	<?php
