@@ -68,13 +68,14 @@
 	<?php
 	   $query = "SELECT `name`, IFNULL(`rate_total`/`rate_user`,0) AS `rating` FROM `hotel` WHERE `oid`='".$id."'";
 	   $row = mysql_query($query,$conn);
-	   echo("<tr><th>Hotel name</th><th>Ratings</th></tr>");
+	   echo("<tr><th>Hotel name</th><th>Ratings</th><th>Details</th></tr>");
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			echo("<td>".$rst[0]."</td>");
 			echo("<td>".sprintf("%1.1f",$rst[1])."</td>");
+			echo("<td style='width:1%'><button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-info-sign'/></button></td>");
 		  echo("</tr>");
-	}
+		}
 	?>
 	</table></div></td><td>
 	<div class="panel panel-default">
@@ -83,12 +84,13 @@
 	<?php
 	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` AND ( ".($hid==0?1:0)." OR R.`hid`='".($hid)."' ) AND `oid`='".$id."' ORDER BY H.`hid`, R.`num`";
 	   $row = mysql_query($query,$conn);
-	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Price</th></tr>");
+	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Price</th><th>Details</th></tr>");
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");
 			 echo("<td>".$rst[1]."</td>");
 			 echo("<td>".$rst[2]."</td>");
+			 echo("<td style='width:1%'><button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-info-sign'/></button></td>");
 		  echo("</tr>");
 	}
 	?>
