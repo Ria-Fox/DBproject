@@ -39,7 +39,7 @@
 	<?php
 	   include("db.php");
 	   $conn = connect();
-	   echo("<tr><td>");
+	   echo("<tr><td>Recommand Hotel based on Rating<br>");
 		  echo("<table border=0>");
 	   $query = "SELECT `name`, IFNULL(`rate_total`/`rate_user`,0) AS `rating` FROM `hotel` ORDER BY `rating` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
@@ -51,7 +51,7 @@
 		  echo("</tr>");
 	}
 	echo("</table></td>");
-	echo("<td>");
+	echo("<td>Recommand Hotel based on Price<br>");
 		  echo("<table border=0>");
 	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
@@ -64,6 +64,19 @@
 		  echo("</tr>");
 	}
 	echo("</table></td>");
+	echo("<td>Recommand Hotel based on options<br>");
+		  echo("<table border=0>");
+	   $query = "SELECT H.`name` , R.`num` , R.`option` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` DESC LIMIT 10";
+	   $row = mysql_query($query,$conn);
+	   echo("<tr><td>Hotel name</td><td>Room number</td><td>Room Option</td></tr>");
+	   while($rst = mysql_fetch_array($row)){
+		  echo("<tr>");
+			 echo("<td>".$rst[0]."</td>");
+			 echo("<td>".$rst[1]."</td>");
+			 echo("<td>".$rst[2]."</td>");
+		  echo("</tr>");
+	}
+	echo("</table></td></tr></table>");
 	?>
 	
 <!--<?php
