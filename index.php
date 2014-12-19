@@ -23,15 +23,15 @@
 		</td>
 		<td>
 		   <form action="search.php" method="get">
-			  Location : <input type="text" name="location"> 
+			  Location : <input type="text" name="location"><br> 
 			  price : 
 			  <select id="" name='price'>
 				 <option value=0 selected="selected">10,000~49,000</option>
 				 <option value=1>50,000~99,000</option>
 				 <option value=2>100,000~199,000</option>
 				 <option value=3>200,000~</option>
-			  </select>
-			  breakfast : <input type="checkbox" name="breakfast">
+			  </select><br>
+			  breakfast : <input type="checkbox" name="breakfast"><br>
 			  <input type="submit">
 			</form>
 		 </td>
@@ -41,16 +41,34 @@
 	   $conn = connect();
 	   echo("<tr><td>");
 		  echo("<table border=0>");
-	   $query = "select 'name', 'rate_total', 'rate_user' from Hotel order by desc limit 10";
+	   $query = "select `name`, `rate_total`, `rate_user` from `hotel` order by (`rate_total`/`rate_user`) desc limit 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><td>Hotel name</td><td>Ratings</td></tr>");
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");
-			 echo("<td>".($rst[1]/$rst[2])."</td>");
+			 if($rst[2]==0){
+				echo("<td>0</td>");
+			 }
+			else{
+				echo("<td>".($rst[1]/$rst[2])."</td>");
+			 }
 		  echo("</tr>");
 	}
-	echo("</td></table>");
+	echo("</table></td>");
+	echo("<td>");
+		  echo("<table border=0>");
+	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` DESC LIMIT 10";
+	   $row = mysql_query($query,$conn);
+	   echo("<tr><td>Hotel name</td><td>Room number</td><td>Room Price</td></tr>");
+	   while($rst = mysql_fetch_array($row)){
+		  echo("<tr>");
+			 echo("<td>".$rst[0]."</td>");
+			 echo("<td>".$rst[1]."</td>");
+			 echo("<td>".$rst[2]."</td>");
+		  echo("</tr>");
+	}
+	echo("</table></td>");
 	?>
 
 
