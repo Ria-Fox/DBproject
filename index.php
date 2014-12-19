@@ -70,10 +70,7 @@
 	}
 	echo("</table></td>");
 	?>
-
-
-
-
+	
 <!--<?php
 include("db.php");
 $conn = connect();
