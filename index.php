@@ -47,7 +47,7 @@
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			echo("<td>".$rst[0]."</td>");
-			echo("<td>".round($rst[1],1)."</td>");
+			echo("<td>".sprintf("%1.1f",$rst[1])."</td>");
 		  echo("</tr>");
 	}
 	echo("</table></td>");
