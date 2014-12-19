@@ -20,7 +20,7 @@
 
 	include("db.php");
 	$conn = connect();
-	$query="select `address` from `user` where `uid`=`".$id."`";
+	$query="select `location` from `user` where `uid`=`".$id."`";
 	$row=mysql_query($query,$conn);
 	$rst=mysql_fetch_array($row);
 	$add=$rst[0];
@@ -88,7 +88,7 @@
     <div class="panel-heading">Recommanded Hotel based on Rating around user's location</div>
 	<table class="table">
 	<?php
-	   $query = "SELECT `name`, IFNULL(`rate_total`/`rate_user`,0) AS `rating` FROM `hotel` where `address`=`".$add."` ORDER BY `rating` DESC LIMIT 10";
+	   $query = "SELECT `name`, IFNULL(`rate_total`/`rate_user`,0) AS `rating` FROM `hotel` where `location`=`".$add."` ORDER BY `rating` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Ratings</th></tr>");
 	   while($rst = mysql_fetch_array($row)){
@@ -103,7 +103,7 @@
     <div class="panel-heading">Recommanded Hotel based on Price around user's location</div>
 	<table class="table">
 	<?php
-	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` where `address`=`".$add."` ORDER BY  `price` LIMIT 10";
+	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` where `location`=`".$add."` ORDER BY  `price` LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Price</th></tr>");
 	   while($rst = mysql_fetch_array($row)){
@@ -119,7 +119,7 @@
     <div class="panel-heading">Recommanded Hotel based on Options around user's location</div>
 	<table class="table">
 	<?php
-	   $query = "SELECT H.`name` , R.`num` , R.`option` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` where `address`=`".$add."` ORDER BY  R.`option` DESC LIMIT 10";
+	   $query = "SELECT H.`name` , R.`num` , R.`option` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` where `location`=`".$add."` ORDER BY  R.`option` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Option</th></tr>");
 	   while($rst = mysql_fetch_array($row)){
