@@ -60,9 +60,12 @@
 			</form>
 		 </td>
 	</tr>
+
+	<tr><td>
+	<div class="panel panel-default">
+    <div class="panel-heading">My Hotel List</div>
+	<table class="table">
 	<?php
-	   echo("<tr><td>");
-		  echo("<table class='table'>");
 	   $query = "SELECT `name`, IFNULL(`rate_total`/`rate_user`,0) AS `rating` FROM `hotel` WHERE `oid`='".$id."'";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Ratings</th></tr>");
@@ -72,9 +75,12 @@
 			echo("<td>".sprintf("%1.1f",$rst[1])."</td>");
 		  echo("</tr>");
 	}
-	echo("</table></td>");
-	echo("<td>");
-		  echo("<table class='table'>");
+	?>
+	</table></div></td><td>
+	<div class="panel panel-default">
+    <div class="panel-heading">My Rooms in Hotels</div>
+	<table class="table">
+	<?php
 	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` AND ( ".($hid==0?1:0)." OR R.`hid`='".($hid)."' ) AND `oid`='".$id."' ORDER BY H.`hid`, R.`num`";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Price</th></tr>");
@@ -85,8 +91,8 @@
 			 echo("<td>".$rst[2]."</td>");
 		  echo("</tr>");
 	}
-	echo("</table></td>");
 	?>
+	</table></div></td></tr>
 	
 </table>
 </div></div>
