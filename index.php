@@ -43,7 +43,7 @@
 		  echo("<table border=0>");
 	   $query = "SELECT `name`, IFNULL(`rate_total`/`rate_user`,0) AS `rating` FROM `hotel` ORDER BY `rating` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
-	   echo("<tr><td>Hotel name</td><td>Ratings</td></tr>");
+	   echo("<tr><td>|Hotel name|</td><td>|Ratings|</td></tr>");
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			echo("<td>".$rst[0]."</td>");
@@ -55,7 +55,7 @@
 		  echo("<table border=0>");
 	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
-	   echo("<tr><td>Hotel name</td><td>Room number</td><td>Room Price</td></tr>");
+	   echo("<tr><td>|Hotel name|</td><td>|Room number|</td><td>|Room Price|</td></tr>");
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");
@@ -68,7 +68,7 @@
 		  echo("<table border=0>");
 	   $query = "SELECT H.`name` , R.`num` , R.`option` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` ORDER BY  R.`option` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
-	   echo("<tr><td>Hotel name</td><td>Room number</td><td>Room Option</td></tr>");
+	   echo("<tr><td>|Hotel name|</td><td>|Room number|</td><td>|Room Option|</td></tr>");
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");
@@ -78,21 +78,7 @@
 	}
 	echo("</table></td></tr>");
 	?>
-	
-<!--<?php
-include("db.php");
-$conn = connect();
-$query = "SELECT `index`, `dept`, `no`, `name` FROM `members`";
-$row = mysql_query($query, $conn);
-while($rst = mysql_fetch_array($row)){
-	echo("<tr>");
-		echo("<td>".$rst[0]."</td>");
-		echo("<td>".$rst[1]."</td>");
-		echo("<td>".$rst[2]."</td>");
-		echo("<td>".$rst[3]."</td>");
-	echo("</tr>");
-}
-?>-->
+
 
 </table>
 </center>
