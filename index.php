@@ -108,7 +108,7 @@
     <div class="panel-heading">Recommanded Hotel based on Price</div>
 	<table class="table">
 	<?php
-	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` DESC LIMIT 10";
+	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Price</th></tr>");
 	   while($rst = mysql_fetch_array($row)){
