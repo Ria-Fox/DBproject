@@ -20,7 +20,7 @@
 
 	include("db.php");
 	$conn = connect();
-	$query="select `location` from `user` where `uid`=`".$id."`";
+	$query="select `address` from `user` where `uid`=".$id;
 	$row=mysql_query($query,$conn);
 	$rst=mysql_fetch_array($row);
 	$add=$rst[0];
@@ -38,7 +38,7 @@
 			<div class="panel panel-info">
 			<div class="panel-heading">User</div>
 			<div class="panel-body">
-			   환영합니다, <?echo($id);?> 님.
+			   환영합니다, <?=$id?> 님.
 			</div>
 			</div>
 		</div>

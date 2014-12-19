@@ -33,5 +33,8 @@
 
  }
  }
+ if(!$_REQUEST['id']){
+	header("location:join.php");
+ }
 
 ?>

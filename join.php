@@ -14,8 +14,8 @@
 			  <td><center><h1>PosHotel <small>join page</small></h1></center></td>
 		   </tr>
 		   <tr>
-			  <td><a href="userjoin.php">HOTEL USER</a></td>
-			  <td><a href="ownerjoin.php">HOTEL OWNER</a></td>
+			  <td><a href="userjoin.html">HOTEL USER</a></td>
+			  <td><a href="ownerjoin.html">HOTEL OWNER</a></td>
 		   </tr>
 		</table>
 	 </body>
