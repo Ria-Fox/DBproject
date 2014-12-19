@@ -27,7 +27,7 @@
 ?>
 
 	<div class="page-header">
-	<center><h1>PosHotel</h1></center>
+	   <center><h1>PosHotel <small>user page</small></h1></center>
 	</div>
 	<center>
 <div class="panel panel-default">
