@@ -53,7 +53,7 @@
 	echo("</table></td>");
 	echo("<td>Recommand Hotel based on Price<br>");
 		  echo("<table border=0>");
-	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` DESC LIMIT 10";
+	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><td>Hotel name</td><td>Room number</td><td>Room Price</td></tr>");
 	   while($rst = mysql_fetch_array($row)){
@@ -66,7 +66,7 @@
 	echo("</table></td>");
 	echo("<td>Recommand Hotel based on options<br>");
 		  echo("<table border=0>");
-	   $query = "SELECT H.`name` , R.`num` , R.`option` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` DESC LIMIT 10";
+	   $query = "SELECT H.`name` , R.`num` , R.`option` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` ORDER BY  R.`option` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><td>Hotel name</td><td>Room number</td><td>Room Option</td></tr>");
 	   while($rst = mysql_fetch_array($row)){
@@ -76,7 +76,7 @@
 			 echo("<td>".$rst[2]."</td>");
 		  echo("</tr>");
 	}
-	echo("</table></td></tr></table>");
+	echo("</table></td></tr>");
 	?>
 	
 <!--<?php
