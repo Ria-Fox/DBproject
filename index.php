@@ -41,18 +41,13 @@
 	   $conn = connect();
 	   echo("<tr><td>");
 		  echo("<table border=0>");
-	   $query = "select `name`, `rate_total`, `rate_user` from `hotel` order by (`rate_total`/`rate_user`) desc limit 10";
+	   $query = "SELECT `name`, IFNULL(`rate_total`/`rate_user`,0) AS `rating` FROM `hotel` ORDER BY `rating` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><td>Hotel name</td><td>Ratings</td></tr>");
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
-			 echo("<td>".$rst[0]."</td>");
-			 if($rst[2]==0){
-				echo("<td>0</td>");
-			 }
-			else{
-				echo("<td>".($rst[1]/$rst[2])."</td>");
-			 }
+			echo("<td>".$rst[0]."</td>");
+			echo("<td>".round($rst[1],1)."</td>");
 		  echo("</tr>");
 	}
 	echo("</table></td>");
