@@ -76,7 +76,7 @@
     <div class="panel-heading">Room List in this Hotel</div>
 	<table class="table">
 	<?php
-	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` AND H.`hid`='".$hid."' ORDER BY R.`num`";
+	   $query = "SELECT H.`name` , R.`num` , R.`price`, H.`hid`, R.`rid` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` AND ( ".($hid==0?1:0)." OR R.`hid`='".($hid)."' ) AND `oid`='".$id."' ORDER BY H.`hid`, R.`num`";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Price</th><th>Details</th></tr>");
 	   while($rst = mysql_fetch_array($row)){
@@ -84,7 +84,9 @@
 			 echo("<td>".$rst[0]."</td>");
 			 echo("<td>".$rst[1]."</td>");
 			 echo("<td>".$rst[2]."</td>");
-			 echo("<td style='width:1%'><button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-info-sign'/></button></td>");
+			 echo("<td style='width:1%'><button type='button' class='btn btn-default btn-xs'
+			 	 onclick='window.location=\"info.php?hid=".$rst[3]."&rid=".$rst[4]."\";'>
+			 	<span class='glyphicon glyphicon-info-sign'/></button></td>");
 		  echo("</tr>");
 	}
 	?>
