@@ -17,23 +17,23 @@
 	  </script>");
    }
    if(!$owner){
-	  $query="select `uid` from `user` where `uid`=`$id` and `pw`=`$pass`";
+	  $query="select `uid` from `user` where `uid`='$id' and `pw`='$pass'";
 	  $result=mysql_query($query);
 	  $count=mysql_num_rows($result);
 	  if($count==1){
 		 $_SESSION["type"]="user";
 		 $_SESSION["id"]=$id;
-		 header("location:index.php");
+		 header("location:user.php");
 	  }
 	  else{
 		 echo("<script>
-			window.alert('Login Failed')
+			window.alert('Login Failed(user)')
 			history.go(-1)
 		 </script>");
 	  }
    }
    else{
-	  $query="select `uid` from `owner` where `uid`=`$id` and `pw`=`$pass`";
+	  $query="select `oid` from `owner` where `oid`='$id' and `pw`='$pass'";
 	  $result=mysql_query($query);
 	  $count=mysql_num_rows($result);
 	  if($count==1){
@@ -43,7 +43,7 @@
 	  }
 	  else{
 		 echo("<script>
-			window.alert('Login Failed')
+			window.alert('Login Failed(owner)')
 			history.go(-1)
 		 </script>");
 	  }

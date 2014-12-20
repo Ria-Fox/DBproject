@@ -14,12 +14,21 @@
 	session_start();
 	$type = $_SESSION["type"];
 	$id = $_SESSION["id"];
+	echo $id;
+	//if(!$id){
+	//   header("location:index.php");
+	//}
+
 	include("db.php");
 	$conn = connect();
+	$query="select `location` from `user` where `uid`=`".$id."`";
+	$row=mysql_query($query,$conn);
+	$rst=mysql_fetch_array($row);
+	/*$add=$rst[0];*/
 ?>
 
 	<div class="page-header">
-	<center><h1>PosHotel</h1></center>
+	   <center><h1>PosHotel <small>user page</small></h1></center>
 	</div>
 	<center>
 <div class="panel panel-default">
@@ -27,29 +36,13 @@
 <table class="table">
 	<tr>
 		<td width="33%">
-			<form action="login.php" method="post">
-		<div class="panel panel-info">
-			<div class="panel-heading">Login</div>
+			<div class="panel panel-info">
+			<div class="panel-heading">User</div>
 			<div class="panel-body">
-				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">ID</span>
-				  <input type="text" name="user_id" class="form-control"/>
-				</div>
-				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">PW</span>
-				  <input type="password" name="user_pw" class="form-control"/>
-				</div>
-			<div class="panel-footer">
-						<table style="width:100%">
-						<tr><td align="left"><input type="checkbox" name="isowner"> Hotel Owner</td>
-						<td align="right"><input type="submit" class="btn btn-default"></td></tr>
-						</table>
+			   환영합니다,  <?=$id?> 님.
 			</div>
 			</div>
 		</div>
-			</form>
-			<form action="join.php">
-			   <td><input type="submit" class="btn btn-default"></td>
 			</form>
 		</td>
 		<td colspan="2">
@@ -89,61 +82,63 @@
 		</div>
 			</form>
 		 </td>
-	</tr>
+	  </tr>
+</table>
+</div></div>
 
 	<tr><td>
 	<div class="panel panel-success">
-    <div class="panel-heading">Recommanded Hotel based on Rating</div>
+	   <div class="panel-heading">Search result</div>
 	<table class="table">
 	<?php
-	   $query = "SELECT `name`, IFNULL(`rate_total`/`rate_user`,0) AS `rating` FROM `hotel` ORDER BY `rating` DESC LIMIT 10";
-	   $row = mysql_query($query,$conn);
-	   echo("<tr><th>Hotel name</th><th>Ratings</th></tr>");
-	   while($rst = mysql_fetch_array($row)){
-		  echo("<tr>");
-			echo("<td>".$rst[0]."</td>");
-			echo("<td>".sprintf("%1.1f",$rst[1])."</td>");
-		  echo("</tr>");
-	}
-	?>
-	</table></div></td><td>
-	<div class="panel panel-success">
-    <div class="panel-heading">Recommanded Hotel based on Price</div>
-	<table class="table">
-	<?php
-	   $query = "SELECT H.`name` , R.`num` , R.`price` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` ORDER BY  `price` LIMIT 10";
-	   $row = mysql_query($query,$conn);
-	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Price</th></tr>");
-	   while($rst = mysql_fetch_array($row)){
-		  echo("<tr>");
-			 echo("<td>".$rst[0]."</td>");
-			 echo("<td>".$rst[1]."</td>");
-			 echo("<td>".$rst[2]."</td>");
-		  echo("</tr>");
-	}
-	?>
-	</table></div></td><td>
-	<div class="panel panel-success">
-    <div class="panel-heading">Recommanded Hotel based on Options</div>
-	<table class="table">
-	<?php
-	   $query = "SELECT H.`name` , R.`num` , R.`option` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` ORDER BY  R.`option` DESC LIMIT 10";
-	   $row = mysql_query($query,$conn);
-	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Option</th></tr>");
-	   while($rst = mysql_fetch_array($row)){
-		  echo("<tr>");
-			 echo("<td>".$rst[0]."</td>");
-			 echo("<td>".$rst[1]."</td>");
-			 echo("<td>".$rst[2]."</td>");
-		  echo("</tr>");
-	}
-	echo("</table></td></tr>");
-	?>
-	</table></div></td>
-	</tr>
+	   $location=$_POST["location"];
+	   $value=$_POST["price"];
+	   $breakfast=$_POST["breakfast"];
+	   //$location=1;
+	   //$value=1;
+	   $lower_price=10000;
+	   $upper_price=49000;
+	   if($value==0)
+	   {
+		  $lower_price=10000;
+		  $upper_price=49000;
+	   }else if($value==1)
+	   {
+		  $lower_price=50000;
+	      $upper_price=99000;
+	   }
+	   else if($value==2)
+	   {
+		  $lower_price=100000;
+		  $upper_price=199000;
+	   }else if($value==3)
+       {
+		  $lower_price=200000;
+		  $upper_price=99999999;
+	   }
 
-</table>
-</div></div>
+	   if($breakfast==on)
+	   {
+		  $option=1;
+	   }else
+	   {
+		  $option=0;
+	   }
+	   
+	   $query = "SELECT h.name, h.rate_total/h.rate_user as rating, r.num, r.price from hotel h, room r where h.hid=r.hid and h.location=".$location." and r.price>=".$lower_price." and r.price<=".$upper_price." and r.option=".$option."";
+	   $row = mysql_query($query,$conn);
+	   echo("<tr><th>Hotel name</th><th>Ratings</th><th>Room Number</th><th>Price</th>");
+	   while($rst = mysql_fetch_array($row)){
+		  echo("<tr>");
+			 echo("<td>".$rst[0]."</td>");
+			 echo("<td>".$rst[1]."</td>");
+			 echo("<td>".$rst[2]."</td>");
+			 echo("<td>".$rst[3]."</td>");
+		  echo("</tr>");
+		}
+	?>
+	</table></div></td><td>
+	<div class="panel panel-success">
 
 </center>
 </body>
