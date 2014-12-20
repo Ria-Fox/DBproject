@@ -32,7 +32,7 @@
  }
  }
  if(!$_REQUEST['id']){
-	header("location:join.php");
+	header("location:index.php");
  }
 
 ?>
