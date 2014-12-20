@@ -68,7 +68,7 @@
 				<table style="width:100%">
 				<tr><td style="width:95%">
 				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">Location</span>
+				  <span class="input-group-addon" style="width:30%">Location</span>
 				  <input type="text" name="location" class="form-control" value="검색"/>
 				</div>
 				</td>
@@ -76,7 +76,7 @@
 				<td rowspan="3"><input type="submit" class="btn btn-default"></td>
 				</tr><tr><td>
 				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">Price</span>
+				  <span class="input-group-addon" style="width:30%">Price</span>
 				  <select id="" name='price'>
 					<option value=0 selected="selected">10,000~49,000</option>
 					<option value=1>50,000~99,000</option>
@@ -87,7 +87,7 @@
 				</td>
 				</tr><tr><td>
 						<div class="input-group" style="width:100%">
-						  <span class="input-group-addon" style="width:25%">Breakfast</span>
+						  <span class="input-group-addon" style="width:30%">Breakfast</span>
 						  <input type="checkbox" name="breakfast">
 						</div>
 					</td>
