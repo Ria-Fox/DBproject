@@ -133,7 +133,7 @@
     <div class="panel-heading">Recommanded Hotel based on Price around user's location</div>
 	<table class="table">
 	<?php
-	   $query = "SELECT H.`name` , R.`num` , R.`price`, H.`hid` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` and `location`=".$add." ORDER BY  `price` LIMIT 10";
+	   $query = "SELECT H.`name` , R.`num` , R.`price`, H.`hid`, R.`rid` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` and `location`=".$add." ORDER BY  `price` LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Price</th></tr>");
 	   while($rst = mysql_fetch_array($row)){
@@ -141,9 +141,8 @@
 			 echo("<td>".$rst[0]."</td>");
 			 echo("<td>".$rst[1]."</td>");
 			 echo("<td>".$rst[2]."</td>");
-			 echo("<td style='width:1%'>
-				<button type='button' class='btn btn-default btn-xs'
-				onclick='window.location=\"info.php?hid=".$rst[3]."\";'>
+			echo("<td style='width:1%'><button type='button' class='btn btn-default btn-xs'
+				onclick='window.location=\"info.php?hid=".$rst[3]."&rid=".$rst[4]."\";'>
 				<span class='glyphicon glyphicon-info-sign'/></button></td>");
 		  echo("</tr>");
 	}
@@ -153,7 +152,7 @@
     <div class="panel-heading">Recommanded Hotel based on Options around user's location</div>
 	<table class="table">
 	<?php
-	   $query = "SELECT H.`name` , R.`num` , R.`option`, H.`hid` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` and `location`=".$add." ORDER BY  R.`option` DESC LIMIT 10";
+	   $query = "SELECT H.`name` , R.`num` , R.`option`, H.`hid`, R.`rid` FROM  `hotel` H, `room` R WHERE H.`hid` = R.`hid` and `location`=".$add." ORDER BY  R.`option` DESC LIMIT 10";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Option</th></tr>");
 	   while($rst = mysql_fetch_array($row)){
@@ -161,9 +160,8 @@
 			 echo("<td>".$rst[0]."</td>");
 			 echo("<td>".$rst[1]."</td>");
 			 echo("<td>".$rst[2]."</td>");
-			 echo("<td style='width:1%'>
-				<button type='button' class='btn btn-default btn-xs'
-				onclick='window.location=\"info.php?hid=".$rst[3]."\";'>
+			echo("<td style='width:1%'><button type='button' class='btn btn-default btn-xs'
+				onclick='window.location=\"info.php?hid=".$rst[3]."&rid=".$rst[4]."\";'>
 				<span class='glyphicon glyphicon-info-sign'/></button></td>");
 		  echo("</tr>");
 	}
