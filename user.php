@@ -43,7 +43,25 @@
 		</div>
 			</form>
 		</td>
-		<td colspan="2">
+		<td width="33%">
+		<div class="panel panel-info">
+			<div class="panel-heading">Notice</div>
+			<div class="panel-body">
+<?php
+    $query = "SELECT COUNT(*) FROM `hotel`";
+	$row = mysql_query($query,$conn);
+	$rst = mysql_fetch_array($row);
+		echo("현재 ".$rst[0]."곳의 호텔, ");
+	$query = "SELECT COUNT(*) FROM `room`";
+	$row = mysql_query($query,$conn);
+	$rst = mysql_fetch_array($row);
+		echo($rst[0]."개의 방이 기다리고 있습니다.");
+?>
+				<br>호텔을 간편하게 예약하세요.
+			</div>
+		</div>
+		</td>
+		<td width="33%">
 		   <form action="search.php" method="post">
 		   <div class="panel panel-primary">
 			<div class="panel-heading">Search for Hotels</div>
@@ -51,15 +69,24 @@
 				<table style="width:100%">
 				<tr><td style="width:95%">
 				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">Location</span>
-				  <input type="text" name="location" class="form-control"/>
+				  <span class="input-group-addon" style="width:30%">Location</span>
+				  <select id="" name="location">
+<?php
+    $query = "SELECT `lid`, `name` FROM `location`";
+	$row = mysql_query($query,$conn);
+	while($rst = mysql_fetch_array($row)){
+		echo("<option value=".$rst[0]);
+		echo(">".$rst[1]."</option>");
+	}
+?>
+        	</select>
 				</div>
 				</td>
 				<td style="width:5%" rowspan="3"/>
-				<td rowspan="3"><input type="submit" class="btn btn-default"></td>
+				<td rowspan="3"><input type="submit" class="btn btn-default" value="검색"></td>
 				</tr><tr><td>
 				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">Price</span>
+				  <span class="input-group-addon" style="width:30%">Price</span>
 				  <select id="" name='price'>
 					<option value=0 selected="selected">10,000~49,000</option>
 					<option value=1>50,000~99,000</option>
@@ -70,7 +97,7 @@
 				</td>
 				</tr><tr><td>
 						<div class="input-group" style="width:100%">
-						  <span class="input-group-addon" style="width:25%">Breakfast</span>
+						  <span class="input-group-addon" style="width:30%">Breakfast</span>
 						  <input type="checkbox" name="breakfast">
 						</div>
 					</td>

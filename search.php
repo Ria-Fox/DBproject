@@ -16,6 +16,10 @@
 	//   header("location:index.php");
 	//}
 
+	$location=$_POST["location"];
+	$value=$_POST["price"];
+	$breakfast=$_POST["breakfast"];
+
 	include("db.php");
 	$conn = connect();
 	$query="select `location` from `user` where `uid`=`".$id."`";
@@ -25,7 +29,7 @@
 ?>
 
 	<div class="page-header">
-	   <center><h1>PosHotel <small>user page</small></h1></center>
+	   <center><h1>PosHotel <small>search page</small></h1></center>
 	</div>
 	<center>
 <div class="panel panel-default">
@@ -34,15 +38,34 @@
 	<tr>
 		<td width="33%">
 			<div class="panel panel-info">
-			<div class="panel-heading">User</div>
+			<div class="panel-heading">Search Result</div>
 			<div class="panel-body">
-			   환영합니다,  <?=$id?> 님.
+			   검색 결과는 아래와 같습니다.
+			   <p align="right"><button type="button" class="btn btn-default" onclick="window.location='index.php'">메인 페이지로 돌아가기</button></p>
 			</div>
 			</div>
 		</div>
 			</form>
 		</td>
-		<td colspan="2">
+		<td width="33%">
+		<div class="panel panel-info">
+			<div class="panel-heading">Notice</div>
+			<div class="panel-body">
+<?php
+    $query = "SELECT COUNT(*) FROM `hotel`";
+	$row = mysql_query($query,$conn);
+	$rst = mysql_fetch_array($row);
+		echo("현재 ".$rst[0]."곳의 호텔, ");
+	$query = "SELECT COUNT(*) FROM `room`";
+	$row = mysql_query($query,$conn);
+	$rst = mysql_fetch_array($row);
+		echo($rst[0]."개의 방이 기다리고 있습니다.");
+?>
+				<br>호텔을 간편하게 예약하세요.
+			</div>
+		</div>
+		</td>
+		<td width="33%">
 		   <form action="search.php" method="post">
 		   <div class="panel panel-primary">
 			<div class="panel-heading">Search for Hotels</div>
@@ -50,27 +73,47 @@
 				<table style="width:100%">
 				<tr><td style="width:95%">
 				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">Location</span>
-				  <input type="text" name="location" class="form-control"/>
+				  <span class="input-group-addon" style="width:30%">Location</span>
+				  <select id="" name="location">
+<?php
+    $query = "SELECT `lid`, `name` FROM `location`";
+	$row = mysql_query($query,$conn);
+	while($rst = mysql_fetch_array($row)){
+		echo("<option value=".$rst[0]);
+		if( $location==$rst[0] )echo(" selected='selected' ");
+		echo(">".$rst[1]."</option>");
+	}
+?>
+        	</select>
 				</div>
 				</td>
 				<td style="width:5%" rowspan="3"/>
-				<td rowspan="3"><input type="submit" class="btn btn-default"></td>
+				<td rowspan="3"><input type="submit" class="btn btn-default" value="검색"></td>
 				</tr><tr><td>
 				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">Price</span>
+				  <span class="input-group-addon" style="width:30%">Price</span>
 				  <select id="" name='price'>
-					<option value=0 selected="selected">10,000~49,000</option>
-					<option value=1>50,000~99,000</option>
-					<option value=2>100,000~199,000</option>
-					<option value=3>200,000~</option>
+					<option value=0
+					<?php if( $value==0 )echo(" selected='selected' ");?>
+					>10,000~49,000</option>
+					<option value=1
+					<?php if( $value==1 )echo(" selected='selected' ");?>
+					>50,000~99,000</option>
+					<option value=2
+					<?php if( $value==2 )echo(" selected='selected' ");?>
+					>100,000~199,000</option>
+					<option value=3
+					<?php if( $value==3 )echo(" selected='selected' ");?>
+					>200,000~</option>
 			  	  </select>
 				</div>
 				</td>
 				</tr><tr><td>
 						<div class="input-group" style="width:100%">
-						  <span class="input-group-addon" style="width:25%">Breakfast</span>
-						  <input type="checkbox" name="breakfast">
+						  <span class="input-group-addon" style="width:30%">Breakfast</span>
+						  <input type="checkbox" name="breakfast"
+<?php if( $breakfast ) echo(" checked ");?>
+						  >
 						</div>
 					</td>
 					</tr>
@@ -88,9 +131,6 @@
 	   <div class="panel-heading">Search result</div>
 	<table class="table">
 	<?php
-	   $location=$_POST["location"];
-	   $value=$_POST["price"];
-	   $breakfast=$_POST["breakfast"];
 	   //$location=1;
 	   //$value=1;
 	   $lower_price=10000;
@@ -122,9 +162,11 @@
 		  $option=0;
 	   }
 	   
-	   $query = "SELECT h.name, h.rate_total/h.rate_user as rating, r.num, r.price, r.rid from hotel h, room r where h.hid=r.hid and h.location=".$location." and r.price>=".$lower_price." and r.price<=".$upper_price." and r.option=".$option."";
+	   ?>
+	   <tr><th>Hotel name</th><th>Ratings</th><th>Room Number</th><th>Price</th><th width="1">Reservation</th>
+	   <?php
+	   $query = "SELECT h.name, IFNULL(h.rate_total/h.rate_user,0) as rating, r.num, r.price, r.rid from hotel h, room r where h.hid=r.hid and h.location=".$location." and r.price>=".$lower_price." and r.price<=".$upper_price." and r.option=".$option."";
 	   $row = mysql_query($query,$conn);
-	   echo("<tr><th>Hotel name</th><th>Ratings</th><th>Room Number</th><th>Price</th><th>Reservation</th>");
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");

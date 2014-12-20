@@ -51,7 +51,13 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">Join</div>
 			<div class="panel-body">
-				지금 가입해서 호텔을 간편하게 예약하세요.
+<?php
+    $query = "SELECT COUNT(*) FROM `user`";
+	$row = mysql_query($query,$conn);
+	$rst = mysql_fetch_array($row);
+		echo("현재 ".$rst[0]." 명이 서비스를 이용하고 있습니다.");
+?>
+				<br>지금 가입해서 호텔을 간편하게 예약하세요.
 			<div class="panel-footer" align="right">
 				<div class="btn-group">
 				<button type="button" class="btn btn-default" onclick="window.location='userjoin.php'">유저 가입하기</button>
@@ -70,7 +76,16 @@
 				<tr><td style="width:95%">
 				<div class="input-group" style="width:100%">
 				  <span class="input-group-addon" style="width:30%">Location</span>
-				  <input type="text" name="location" class="form-control"/>
+				  <select id="" name="location">
+<?php
+    $query = "SELECT `lid`, `name` FROM `location`";
+	$row = mysql_query($query,$conn);
+	while($rst = mysql_fetch_array($row)){
+		echo("<option value=".$rst[0]);
+		echo(">".$rst[1]."</option>");
+	}
+?>
+        	</select>
 				</div>
 				</td>
 				<td style="width:5%" rowspan="3"/>
