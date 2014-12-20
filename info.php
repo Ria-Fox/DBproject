@@ -105,11 +105,14 @@
 			echo("<button type='button' class='btn btn-default'>룸 수정</button>");
 			echo("<button type='button' class='btn btn-default'>룸 삭제</button>");
 		}
-		if( $type != "user" && $type != "owner" ){
-			echo( "로그인해주세요" );
-		}
 	?>
-	</div></div></div></td></tr>
+	</div>
+	<?php
+	if( $type != "user" && $type != "owner" ){
+		echo( "로그인해주세요" );
+	}?>
+	<button type='button' class='btn btn-default' onclick="history.go(-1)">뒤로 가기</button>
+	</div></div></td></tr>
 	
 </table>
 </div></div>
