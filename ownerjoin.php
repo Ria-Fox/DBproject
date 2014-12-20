@@ -6,7 +6,7 @@
      $id=$_REQUEST['id'];
     $pw=$_REQUEST['pw'];
 	$phone=$_REQUEST['phone'];
-	  $query="select count(*) from `owner` where `oid`= ".$id;
+	  $query="select count(*) from `owner` where `oid`= '".$id."'";
 	  $row=mysql_query($query,$conn);
 	  $rs=mysql_fetch_array($row);
 	  $isid=$rs[0];
@@ -23,7 +23,7 @@
 	  </script>");
    }
    else{
-	  $query="insert `owner` values (".$id.", ".$pw.", ".$phone.")";
+	  $query="insert `owner` values ('".$id."', '".$pw."', '".$phone."')";
 	$row=mysql_query($query, $conn);
 	$_SESSION['type']="owner";
 	$_SESSION['id']=$id;
