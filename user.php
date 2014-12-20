@@ -18,7 +18,7 @@
 
 	include("db.php");
 	$conn = connect();
-	$query="select `location` from `user` where `uid`='".$id"'";
+	$query="select `location` from `user` where `uid`='".$id."'";
 	$row=mysql_query($query,$conn);
 	$rst=mysql_fetch_array($row);
 	$add=$rst[0];
