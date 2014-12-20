@@ -70,11 +70,11 @@
 				<tr><td style="width:95%">
 				<div class="input-group" style="width:100%">
 				  <span class="input-group-addon" style="width:30%">Location</span>
-				  <input type="text" name="location" class="form-control" value="검색"/>
+				  <input type="text" name="location" class="form-control"/>
 				</div>
 				</td>
 				<td style="width:5%" rowspan="3"/>
-				<td rowspan="3"><input type="submit" class="btn btn-default"></td>
+				<td rowspan="3"><input type="submit" class="btn btn-default" value="검색"></td>
 				</tr><tr><td>
 				<div class="input-group" style="width:100%">
 				  <span class="input-group-addon" style="width:30%">Price</span>
