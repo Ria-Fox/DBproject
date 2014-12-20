@@ -8,6 +8,7 @@
 	<script src="//code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 <?php
+	clearstatcache();
 	session_start();
 	$type = $_SESSION["type"];
 	$id = $_SESSION["id"];

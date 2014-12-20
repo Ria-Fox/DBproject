@@ -39,6 +39,7 @@
 			<div class="panel-heading">User</div>
 			<div class="panel-body">
 			   환영합니다, <?=$id?> 님.
+			   <button type="button" class="btn btn-default btn-xs" onclick="window.location='logout.php'">로그아웃</button>
 			</div>
 			</div>
 		</div>
