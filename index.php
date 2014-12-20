@@ -54,8 +54,8 @@
 				지금 가입해서 호텔을 간편하게 예약하세요.
 			<div class="panel-footer" align="right">
 				<div class="btn-group">
-				<button type="button" class="btn btn-default" onclick="window.location='userjoin.php'">유저 가입하기</button>
-				<button type="button" class="btn btn-default" onclick="window.location='ownerjoin.php'">오너 가입하기</button>
+				<button type="button" class="btn btn-default" onclick="window.location='userjoin.html'">유저 가입하기</button>
+				<button type="button" class="btn btn-default" onclick="window.location='ownerjoin.html'">오너 가입하기</button>
 				</div>
 			</div>
 			</div>
