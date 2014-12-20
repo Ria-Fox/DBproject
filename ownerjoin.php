@@ -5,8 +5,8 @@
    if($_SERVER["REQUEST_METHOD"] == "POST"){
      $id=$_REQUEST['id'];
     $pw=$_REQUEST['pw'];
-      $phone=$_REQUEST['phone'];
-	  $query="select count(*) from `owner` where `uid`= ".$id."";
+	$phone=$_REQUEST['phone'];
+	  $query="select count(*) from `owner` where `oid`= ".$id;
 	  $row=mysql_query($query,$conn);
 	  $rs=mysql_fetch_array($row);
 	  $isid=$rs[0];
