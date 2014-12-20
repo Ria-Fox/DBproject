@@ -12,8 +12,8 @@
 
 <?php
 	session_start();
-	$_SESSION["type"] = "owner";
-	$_SESSION["id"] = "주인";
+//	$_SESSION["type"] = "owner";
+//	$_SESSION["id"] = "주인";
 	$type = $_SESSION["type"];
 	$id = $_SESSION["id"];
 	$hid = $_POST["hid"];
