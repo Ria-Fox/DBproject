@@ -12,10 +12,11 @@
 
 <?php
 	session_start();
-//	$_SESSION["type"] = "owner";
-//	$_SESSION["id"] = "주인";
 	$type = $_SESSION["type"];
 	$id = $_SESSION["id"];
+	if(!$id){
+	   header("location:index.php");
+	}
 	$hid = $_POST["hid"];
 	include("db.php");
 	$conn = connect();
@@ -33,7 +34,8 @@
 			<div class="panel panel-info">
 			<div class="panel-heading">Hotel owner</div>
 			<div class="panel-body">
-				환영합니다, <?=$id?> 님.
+				환영합니다, <?=$id?> 님. 
+				<button type="button" class="btn btn-default btn-xs" onclick="window.location='logout.php'">로그아웃</button>
 			</div></div>
 		</td>
 		<td width="50%">

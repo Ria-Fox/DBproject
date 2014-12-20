@@ -2,14 +2,11 @@
 <html lang="ko">
 <head>
 	<meta charset="utf-8" http-equiv="ContentType" content="text/html;charset=UTF-8"/>
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"/>
 </head>
 <body style="padding:5px">
 	<script src="//code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/respond.js"></script>
-
 <?php
 	session_start();
 	$type = $_SESSION["type"];
@@ -40,19 +37,30 @@
 				  <input type="password" name="user_pw" class="form-control"/>
 				</div>
 			<div class="panel-footer">
-						<table style="width:100%">
-						<tr><td align="left"><input type="checkbox" name="isowner"> Hotel Owner</td>
-						<td align="right"><input type="submit" class="btn btn-default"></td></tr>
-						</table>
+				<table style="width:100%">
+				<tr><td align="left"><input type="checkbox" name="isowner"> Hotel Owner</td>
+				<td align="right"><input type="submit" class="btn btn-default" value="로그인"></td></tr>
+				</table>
 			</div>
 			</div>
 		</div>
 			</form>
-			<form action="join.php">
-			   <td><input type="submit" class="btn btn-default"></td>
-			</form>
 		</td>
-		<td colspan="2">
+		<td width="33%">
+		<div class="panel panel-info">
+			<div class="panel-heading">Join</div>
+			<div class="panel-body">
+				지금 가입해서 호텔을 간편하게 예약하세요.
+			<div class="panel-footer" align="right">
+				<div class="btn-group">
+				<button type="button" class="btn btn-default" onclick="window.location='userjoin.html'">유저 가입하기</button>
+				<button type="button" class="btn btn-default" onclick="window.location='userjoin.html'">오너 가입하기</button>
+				</div>
+			</div>
+			</div>
+		</div>
+		</td>
+		<td width="33%">
 		   <form action="search.php" method="post">
 		   <div class="panel panel-primary">
 			<div class="panel-heading">Search for Hotels</div>
@@ -60,15 +68,15 @@
 				<table style="width:100%">
 				<tr><td style="width:95%">
 				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">Location</span>
-				  <input type="text" name="location" class="form-control"/>
+				  <span class="input-group-addon" style="width:30%">Location</span>
+				  <input type="text" name="location" class="form-control" value="검색"/>
 				</div>
 				</td>
 				<td style="width:5%" rowspan="3"/>
 				<td rowspan="3"><input type="submit" class="btn btn-default"></td>
 				</tr><tr><td>
 				<div class="input-group" style="width:100%">
-				  <span class="input-group-addon" style="width:25%">Price</span>
+				  <span class="input-group-addon" style="width:30%">Price</span>
 				  <select id="" name='price'>
 					<option value=0 selected="selected">10,000~49,000</option>
 					<option value=1>50,000~99,000</option>
@@ -79,7 +87,7 @@
 				</td>
 				</tr><tr><td>
 						<div class="input-group" style="width:100%">
-						  <span class="input-group-addon" style="width:25%">Breakfast</span>
+						  <span class="input-group-addon" style="width:30%">Breakfast</span>
 						  <input type="checkbox" name="breakfast">
 						</div>
 					</td>
