@@ -12,6 +12,14 @@
 	session_start();
 	$type = $_SESSION["type"];
 	$id = $_SESSION["id"];
+
+	if($type == "user"){
+	   header("location:user.php");
+	}
+	if($type == "owner"){
+	   header("location:owner.php");
+	}
+
 	include("db.php");
 	$conn = connect();
 ?>

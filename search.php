@@ -170,7 +170,7 @@
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");
-			 echo("<td>".$rst[1]."</td>");
+			 echo("<td>".sprintf("%1.1f",$rst[1])."</td>");
 			 echo("<td>".$rst[2]."</td>");
 			 echo("<td>".$rst[3]."</td>");
 		  echo("</tr>");
