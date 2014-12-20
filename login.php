@@ -14,7 +14,6 @@
 	  echo("
 	  	<script language='javascript' type='text/javascript'>
 			window.alert('Please input your id and password');
-			history.go(-1);
 		 </script>");
    }
    if(!$owner){
