@@ -14,7 +14,6 @@
 	$id = $_SESSION["id"];
 	$hid = $_GET["hid"];
 	$rid = $_GET["rid"];
-
 	include("db.php");
 	$conn = connect();
 
@@ -74,7 +73,7 @@
     <div class="panel-heading">Room List in this Hotel</div>
 	<table class="table">
 	<?php
-	   $query = "SELECT H.`name` , R.`num` , R.`price`, H.`hid`, R.`rid` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` AND ( ".($hid==0?1:0)." OR R.`hid`='".($hid)."' ) AND `oid`='".$id."' ORDER BY H.`hid`, R.`num`";
+	   $query = "SELECT H.`name` , R.`num` , R.`price`, H.`hid`, R.`rid` FROM  `hotel` H,  `room` R WHERE H.`hid` = R.`hid` AND R.`hid`='".$hid."' ORDER BY H.`hid`, R.`num`";
 	   $row = mysql_query($query,$conn);
 	   echo("<tr><th>Hotel name</th><th>Room number</th><th>Room Price</th><th>Details</th></tr>");
 	   while($rst = mysql_fetch_array($row)){

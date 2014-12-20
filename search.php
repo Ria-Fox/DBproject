@@ -165,7 +165,7 @@
 	   ?>
 	   <tr><th>Hotel name</th><th>Ratings</th><th>Room Number</th><th>Price</th><th width="1">Reservation</th>
 	   <?php
-	   $query = "SELECT h.name, IFNULL(h.rate_total/h.rate_user,0) as rating, r.num, r.price, r.rid from hotel h, room r where h.hid=r.hid and h.location=".$location." and r.price>=".$lower_price." and r.price<=".$upper_price." and r.option=".$option."";
+	   $query = "SELECT h.name, IFNULL(h.rate_total/h.rate_user,0) as rating, r.num, r.price, h.hid, r.rid from hotel h, room r where h.hid=r.hid and h.location=".$location." and r.price>=".$lower_price." and r.price<=".$upper_price." and r.option=".$option."";
 	   $row = mysql_query($query,$conn);
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
@@ -173,6 +173,9 @@
 			 echo("<td>".sprintf("%1.1f",$rst[1])."</td>");
 			 echo("<td>".$rst[2]."</td>");
 			 echo("<td>".$rst[3]."</td>");
+			 echo("<td style='width:1%'><button type='button' class='btn btn-default btn-xs'
+			 	onclick='window.location=\"info.php?hid=".$rst[4]."&rid=".$rst[5]."\";'>
+			 	<span class='glyphicon glyphicon-info-sign'/></button></td>");
 		  echo("</tr>");
 		}
 	?>
