@@ -14,7 +14,6 @@
 	session_start();
 	$type = $_SESSION["type"];
 	$id = $_SESSION["id"];
-	echo $id;
 	//if(!$id){
 	//   header("location:index.php");
 	//}
@@ -125,9 +124,9 @@
 		  $option=0;
 	   }
 	   
-	   $query = "SELECT h.name, h.rate_total/h.rate_user as rating, r.num, r.price from hotel h, room r where h.hid=r.hid and h.location=".$location." and r.price>=".$lower_price." and r.price<=".$upper_price." and r.option=".$option."";
+	   $query = "SELECT h.name, h.rate_total/h.rate_user as rating, r.num, r.price, r.rid from hotel h, room r where h.hid=r.hid and h.location=".$location." and r.price>=".$lower_price." and r.price<=".$upper_price." and r.option=".$option."";
 	   $row = mysql_query($query,$conn);
-	   echo("<tr><th>Hotel name</th><th>Ratings</th><th>Room Number</th><th>Price</th>");
+	   echo("<tr><th>Hotel name</th><th>Ratings</th><th>Room Number</th><th>Price</th><th>Reservation</th>");
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");
