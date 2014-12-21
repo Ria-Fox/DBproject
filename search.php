@@ -154,9 +154,9 @@
 		  $upper_price=99999999;
 	   }
 
-	   if($breakfast==on)
+	   if($breakfast)
 	   {
-		  $option=1;
+		  $option=2;
 	   }else
 	   {
 		  $option=0;
@@ -165,7 +165,7 @@
 	   ?>
 	   <tr><th>Hotel name</th><th>Ratings</th><th>Room Number</th><th>Price</th><th width="1">Reservation</th>
 	   <?php
-	   $query = "SELECT h.name, IFNULL(h.rate_total/h.rate_user,0) as rating, r.num, r.price, h.hid, r.rid from hotel h, room r where h.hid=r.hid and h.location=".$location." and r.price>=".$lower_price." and r.price<=".$upper_price." and r.option=".$option."";
+	   $query = "SELECT h.name, IFNULL(h.rate_total/h.rate_user,0) as rating, r.num, r.price, h.hid, r.rid from hotel h, room r where h.hid=r.hid and h.location=".$location." and r.price>=".$lower_price." and r.price<=".$upper_price." and r.option>=".$option."";
 	   $row = mysql_query($query,$conn);
 	   while($rst = mysql_fetch_array($row)){
 		  echo("<tr>");

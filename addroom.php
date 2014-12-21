@@ -15,7 +15,7 @@
     $hid = $_REQUEST["hid"];
 	$hname=$_REQUEST['hname'];
 ?>
-		<form action="addroomproc.php" method="post">
+		<form action="addroomproc.php" method="post" name="addroom">
 		<center><div class="panel panel-default" style="width:640px">
 		<div class="panel-heading">
 		<center><h1>PosHotel <small>room registration</small></h1></center>
@@ -36,13 +36,20 @@
 		   </tr>
 		   <tr>
 			  <td align="right">Options : </td>
-			  <td><input type="number" name="option"></td>
+			  <td>
+			  <div class="input-group">
+        		<input type="checkbox" name="option1">조식 
+        		<input type="checkbox" name="option2">와이파이
+        		<input type="hidden" name="option" value="0">
+    		  </div>
+			  </td>
 		   </tr>
 		</table>
 		</div>
 		<div class="panel-footer" align="right">
 			<button type="button" class="btn btn-default" onclick="history.go(-1)">취소</button>
-			<input type="hidden" name="submitted" value=1><input type="submit" class="btn btn-primary" value="등록하기">
+			<input type="hidden" name="submitted" value=1><input type="submit" class="btn btn-primary" value="등록하기"
+			onclick="document.forms.addroom.elements.option.value=(document.forms.addroom.elements.option1.checked*2)+(document.forms.addroom.elements.option2.checked)">
 		</div></center>
 		</form>
 	 </body>

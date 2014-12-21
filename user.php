@@ -21,6 +21,7 @@
 	}
 
 	include("db.php");
+	include("option.php");
 	$conn = connect();
 	$query="select `location` from `user` where `uid`='".$id."'";
 	$row=mysql_query($query,$conn);
@@ -163,7 +164,7 @@
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");
 			 echo("<td>".$rst[1]."</td>");
-			 echo("<td>".$rst[2]."</td>");
+			 echo("<td>".option_str($rst[2])."</td>");
 			echo("<td style='width:1%'><button type='button' class='btn btn-default btn-xs'
 				onclick='window.location=\"info.php?hid=".$rst[3]."&rid=".$rst[4]."\";'>
 				<span class='glyphicon glyphicon-info-sign'/></button></td>");

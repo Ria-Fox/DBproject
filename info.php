@@ -19,6 +19,7 @@
 	$hid = $_GET["hid"];
 	$rid = $_GET["rid"];
 	include("db.php");
+	include("option.php");
 	$conn = connect();
 
     $query = "SELECT `name`, `address`, `phone`, IFNULL(`rate_total`/`rate_user`,0), `oid` AS `rating` FROM `hotel` WHERE `hid`='".$hid."'";
@@ -67,7 +68,7 @@
 				<h2>Room <?=$room_num?></h2>
 				</div><div class="panel-footer">
 				Price: <?=$room_price?><br>
-				Options: <?=$room_option?>
+				Options: <?=option_str($room_option)?>
 			</div></div>
 		</td>
 	</tr>

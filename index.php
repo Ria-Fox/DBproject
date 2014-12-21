@@ -24,6 +24,7 @@
 	}
 
 	include("db.php");
+	include("option.php");
 	$conn = connect();
 ?>
 
@@ -169,7 +170,7 @@
 		  echo("<tr>");
 			 echo("<td>".$rst[0]."</td>");
 			 echo("<td>".$rst[1]."</td>");
-			 echo("<td>".$rst[2]."</td>");
+			 echo("<td>".option_str($rst[2])."</td>");
 		  echo("</tr>");
 	}
 	echo("</table></td></tr>");
