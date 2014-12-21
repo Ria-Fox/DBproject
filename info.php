@@ -98,8 +98,8 @@
 			echo("<button type='button' class='btn btn-default'>룸 예약 취소</button>");
 		}
 		if( $type == "owner" && $id == $hotel_oid ){
-			echo("<button type='button' class='btn btn-default'>룸 추가</button>");
-			echo("<button type='button' class='btn btn-default'>룸 수정</button>");
+			echo("<button type='button' class='btn btn-default' 
+				onclick='window.location=\"addroom.php?hname=".$hotel_name."&hid=".$hid."\";'>룸 추가</button>");
 			echo("<button type='button' class='btn btn-default'>룸 삭제</button>");
 		}
 	?>
@@ -108,7 +108,10 @@
 	if( $type != "user" && $type != "owner" ){
 		echo( "로그인해주세요" );
 	}?>
+	<div class="btn-group">
 	<button type='button' class='btn btn-default' onclick="history.go(-1)">뒤로 가기</button>
+	<button type='button' class='btn btn-default' onclick="window.location='index.php'">메인페이지로</button>
+	</div>
 	</div></div></td></tr>
 	
 </table>
