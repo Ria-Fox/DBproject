@@ -132,6 +132,25 @@
 	<button type='button' class='btn btn-default' onclick="history.go(-1)">뒤로 가기</button>
 	<button type='button' class='btn btn-default' onclick="window.location='index.php'">메인페이지로</button>
 	</div>
+	<?php
+	if( $type == "user" && $rid ){
+	echo('
+	<br><br>
+	<form action="rating.php" method="post" name="rating">
+	<div class="btn-group">
+		<input type="submit" class="btn btn-default btn-warning" value="★★★★★" onclick="document.forms.rating.elements.rating.value=5">
+		<input type="submit" class="btn btn-default" value="★★★★" onclick="document.forms.rating.elements.rating.value=4">
+		<input type="submit" class="btn btn-default" value="★★★" onclick="document.forms.rating.elements.rating.value=3">
+		<input type="submit" class="btn btn-default" value="★★" onclick="document.forms.rating.elements.rating.value=2">
+		<input type="submit" class="btn btn-default" value="★" onclick="document.forms.rating.elements.rating.value=1">
+		<input type="hidden" value="0" name="rating">
+		<input type="hidden" value='.$hid.' name="hid">
+		<input type="hidden" value='.$rid.' name="rid">
+	</div>
+	</form>
+	');
+	}
+	?>
 	</div></div></td></tr>
 	
 </table>
