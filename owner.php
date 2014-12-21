@@ -32,8 +32,11 @@
 			<div class="panel panel-info">
 			<div class="panel-heading">Hotel owner</div>
 			<div class="panel-body">
-				환영합니다, <?=$id?> 님. 
+				환영합니다, <?=$id?> 님.
 				<button type="button" class="btn btn-default btn-xs" onclick="window.location='logout.php'">로그아웃</button>
+				<p align="right">
+				<button type="button" class="btn btn-default" onclick="window.location='addhotel.php'">호텔 추가하기</button>
+				</p>
 			</div></div>
 		</td>
 		<td width="50%">
