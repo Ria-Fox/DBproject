@@ -53,16 +53,28 @@
 			<div class="panel-heading">Notice</div>
 			<div class="panel-body">
 <?php
-    $query = "SELECT COUNT(*) FROM `hotel`";
+	$query = "SELECT 1 FROM `reservation` WHERE `uid`='".$id."'";
 	$row = mysql_query($query,$conn);
-	$rst = mysql_fetch_array($row);
-		echo("현재 ".$rst[0]."곳의 호텔, ");
-	$query = "SELECT COUNT(*) FROM `room`";
-	$row = mysql_query($query,$conn);
-	$rst = mysql_fetch_array($row);
-		echo($rst[0]."개의 방이 기다리고 있습니다.");
+	if( !mysql_num_rows( $row ) ){
+			echo("고객님의 예약 내역이 없습니다.<br>");
+		$query = "SELECT COUNT(*) FROM `hotel`";
+		$row = mysql_query($query,$conn);
+		$rst = mysql_fetch_array($row);
+			echo("현재 ".$rst[0]."곳의 호텔, ");
+		$query = "SELECT COUNT(*) FROM `room`";
+		$row = mysql_query($query,$conn);
+		$rst = mysql_fetch_array($row);
+			echo($rst[0]."개의 방이 기다리고 있습니다.");
+	}else{
+			echo("고객님의 예약 내역:");
+		$query ="SELECT `time`, `name`, `num` FROM `reservation` RS, `hotel` H, `room` R WHERE RS.`uid`='".$id."' AND RS.`hid`=H.`hid` AND RS.`rid`=R.`rid`";
+		$row = mysql_query($query,$conn);
+		while( $rst = mysql_fetch_array($row) ){
+			echo("<br>".$rst[0]." ".$rst[1]." Room ".$rst[2]);
+		}
+	}
+
 ?>
-				<br>호텔을 간편하게 예약하세요.
 			</div>
 		</div>
 		</td>
