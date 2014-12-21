@@ -1,3 +1,7 @@
+<?php
+  header("Cache-Control: no-cache"); //# 캐쉬를 사용 안함
+  header("Pragma: no-cache");  //# 캐시를 사용 안함
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,7 +12,6 @@
 	<script src="//code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 <?php
-	clearstatcache();
 	session_start();
 	$type = $_SESSION["type"];
 	$id = $_SESSION["id"];
