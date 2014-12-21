@@ -107,6 +107,10 @@
 	?>
 	</div>
 	<?php
+	if( $type == "owner" && $id == $hotel_oid ){
+		echo("<button type='button' class='btn btn-default' 
+			onclick='window.location=\"deletehotelproc.php?hid=".$hid."\";'>호텔 삭제</button>");
+	}
 	if( $type != "user" && $type != "owner" ){
 		echo( "로그인해주세요" );
 	}?>
