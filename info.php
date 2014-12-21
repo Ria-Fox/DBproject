@@ -133,7 +133,7 @@
 	<button type='button' class='btn btn-default' onclick="window.location='index.php'">메인페이지로</button>
 	</div>
 	<?php
-	if( $type == "user" && $rid ){
+	if( $type == "user" ){
 	echo('
 	<br><br>
 	<form action="rating.php" method="post" name="rating">
