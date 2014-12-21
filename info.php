@@ -100,7 +100,9 @@
 		if( $type == "owner" && $id == $hotel_oid ){
 			echo("<button type='button' class='btn btn-default' 
 				onclick='window.location=\"addroom.php?hname=".$hotel_name."&hid=".$hid."\";'>룸 추가</button>");
-			echo("<button type='button' class='btn btn-default'>룸 삭제</button>");
+			if( $rid )
+			echo("<button type='button' class='btn btn-default'
+				onclick='window.location=\"deleteroomproc.php?hid=".$hid."&rid=".$rid."\";'>룸 삭제</button>");
 		}
 	?>
 	</div>
