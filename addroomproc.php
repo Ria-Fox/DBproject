@@ -1,4 +1,6 @@
 <?php
+  header("Cache-Control: no-cache");
+  header("Pragma: no-cache");
    include("db.php");
    $conn=connect();
    session_start();

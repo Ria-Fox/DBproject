@@ -1,8 +1,6 @@
-<html>
-   <head><title></title></head>
-   <body>
-
 <?php
+  header("Cache-Control: no-cache");
+  header("Pragma: no-cache");
    clearstatcache();
    include("db.php");
    $conn=connect();
@@ -51,5 +49,3 @@
 	  }
    }
 ?>
-</body>
-</html>

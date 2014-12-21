@@ -1,3 +1,7 @@
+<?php
+  header("Cache-Control: no-cache");
+  header("Pragma: no-cache");
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -93,22 +97,31 @@
     <div class="panel-body">
 	<div class="btn-group">
 	<?php
-		if( $type == "user" ){
-			echo("<button type='button' class='btn btn-default'>룸 예약</button>");
-			echo("<button type='button' class='btn btn-default'>룸 예약 취소</button>");
+		if( $type == "user" && $rid ){
+			echo("<form id='resform' method='get' action='reservation.php'>");
+			echo("<input class='form-control' type='hidden' name='uid' value=".$id." >");
+			echo("<input class='form-control' type='hidden' name='hid' value=".$hid." >");
+			echo("<input class='form-control' type='hidden' name='rid' value=".$rid." >");
+			echo("<input class='form-control' type='hidden' name='cancel' value='0' >");
+			echo("<input class='form-control' type='date' name='date' value='".date('Y-m-d')."'>");
+			echo("<input type='submit' class='btn btn-primary' value='룸 예약'
+				onclick='document.forms.resform.elements.cancel.value = 0'>");
+			echo("<input type='submit' class='btn btn-default' value='룸 예약 취소'
+				onclick='document.forms.resform.elements.cancel.value = 1'>");
+			echo("</form>");
 		}
 		if( $type == "owner" && $id == $hotel_oid ){
-			echo("<button type='button' class='btn btn-default' 
+			echo("<button type='button' class='btn btn-primary' 
 				onclick='window.location=\"addroom.php?hname=".$hotel_name."&hid=".$hid."\";'>룸 추가</button>");
 			if( $rid )
-			echo("<button type='button' class='btn btn-default'
+			echo("<button type='button' class='btn btn-danger'
 				onclick='window.location=\"deleteroomproc.php?hid=".$hid."&rid=".$rid."\";'>룸 삭제</button>");
 		}
 	?>
 	</div>
 	<?php
 	if( $type == "owner" && $id == $hotel_oid ){
-		echo("<button type='button' class='btn btn-default' 
+		echo("<button type='button' class='btn btn-danger' 
 			onclick='window.location=\"deletehotelproc.php?hid=".$hid."\";'>호텔 삭제</button>");
 	}
 	if( $type != "user" && $type != "owner" ){

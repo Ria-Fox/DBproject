@@ -1,6 +1,6 @@
 <?php
-  header("Cache-Control: no-cache"); //# 캐쉬를 사용 안함
-  header("Pragma: no-cache");  //# 캐시를 사용 안함
+  header("Cache-Control: no-cache");
+  header("Pragma: no-cache");
 ?>
 <!DOCTYPE html>
 <html lang="ko">
